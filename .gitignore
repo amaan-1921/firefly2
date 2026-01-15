@@ -1,0 +1,23 @@
+# ===== Python =====
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ===== Virtual Environments =====
+venv/
+.venv/
+env/
+
+# ===== Logs =====
+*.log
+
+# ===== OS Files =====
+.DS_Store
+Thumbs.db
+
+# ===== Editor Config =====
+.vscode/
+
+# ===== Environment Variables =====
+.env
