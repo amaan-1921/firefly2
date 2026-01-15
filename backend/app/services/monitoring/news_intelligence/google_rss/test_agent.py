@@ -35,10 +35,11 @@ if result["success"] and "output_file" in result:
     # First line is metadata
     if lines:
         metadata = json.loads(lines[0])
-        print(f"Records Count: {metadata['records_count']}")
+        print(f"Signals Count: {metadata.get('signals_count', 'N/A')}")
+        print(f"Signals in this run: {metadata.get('signals_in_this_run', 'N/A')}")
     
-    # Print first record (second line)
+    # Print first signal (second line)
     if len(lines) > 1:
-        first_record = json.loads(lines[1])
-        print(f"\nFirst Record:")
-        print(json.dumps(first_record, indent=2))
+        first_signal = json.loads(lines[1])
+        print(f"\nFirst Signal:")
+        print(json.dumps(first_signal, indent=2))
