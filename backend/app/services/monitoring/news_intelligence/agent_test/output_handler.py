@@ -81,16 +81,18 @@ def filter_unique_articles(
 ) -> List[Dict[str, Any]]:
     """
     Filter out articles that already exist based on URL.
+    Also deduplicates within the batch (first occurrence wins).
     
     Args:
         articles: List of article dictionaries
-        existing_urls: Set of normalized existing URLs
+        existing_urls: Set of normalized existing URLs from file
         
     Returns:
-        List of unique articles (not in existing_urls)
+        List of unique articles (not in existing_urls or seen in this batch)
     """
     unique_articles = []
     duplicates = 0
+    seen_in_batch = set()  # Track URLs in this batch to avoid duplicates within batch
     
     logger.debug(f"Filtering {len(articles)} articles against {len(existing_urls)} existing URLs")
     
@@ -103,15 +105,16 @@ def filter_unique_articles(
         
         normalized_url = normalize_url(url)
         
-        if normalized_url not in existing_urls:
+        # Check if URL already exists in file OR in this batch
+        if normalized_url not in existing_urls and normalized_url not in seen_in_batch:
             unique_articles.append(article)
-            existing_urls.add(normalized_url)  # Track newly added URLs
+            seen_in_batch.add(normalized_url)  # Track in current batch only
         else:
             duplicates += 1
             logger.debug(f"Duplicate found: {url}")
     
     if duplicates > 0:
-        logger.info(f"Filtered out {duplicates} duplicate article(s) (already exist in file)")
+        logger.info(f"Filtered out {duplicates} duplicate article(s) (already exist in file or within batch)")
     
     return unique_articles
 

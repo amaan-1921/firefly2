@@ -99,6 +99,26 @@ SEARCH_TOPICS = [
     "mineral shortage",
     "energy shortage",
     "fuel shortage",
+    
+    # Political and regulatory issues
+    "trade tariff",
+    "trade war",
+    "trade policy update",
+    "export control",
+    "import restriction",
+    "tariff increase",
+    "trade sanctions",
+    "trade agreement",
+    "customs regulation",
+    "border closure",
+    "government regulation supply chain",
+    "trade restriction impact",
+    
+    # Geopolitical tensions
+    "geopolitical risk supply chain",
+    "international conflict",
+    "political instability",
+    "trade dispute",
 ]
 
 # ============================================================================
@@ -192,6 +212,31 @@ KEYWORDS = [
     "recession",
     "gdp",
     
+    # Political and regulatory issues
+    "tariff",
+    "trade war",
+    "trade policy",
+    "trade restriction",
+    "embargo",
+    "sanction",
+    "regulation",
+    "government policy",
+    "political",
+    "policy change",
+    "trade deal",
+    "trade agreement",
+    "customs",
+    "border",
+    "export control",
+    "import restriction",
+    
+    # Geopolitical issues
+    "geopolitical",
+    "international relations",
+    "conflict",
+    "tensions",
+    "political crisis",
+    
     # Business and finance
     "business",
     "market",
@@ -218,7 +263,8 @@ USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 # SEARCH ENGINE CONFIG
 # ============================================================================
 # Use googlesearch-python library (free, rate-limited)
-USE_GOOGLE_SEARCH = True
+# Set to False if Google is rate-limiting (returns 0 results)
+USE_GOOGLE_SEARCH = True  # Disabled by default due to Google rate-limiting
 GOOGLE_SEARCH_NUM_RESULTS = 10
 GOOGLE_SEARCH_DELAY_S = 2.0  # Delay between searches to avoid rate limits
 
