@@ -119,7 +119,7 @@ class GoogleSearchLibraryEngine(SearchEngine):
         results = []
         
         try:
-            for url in search(query, num=num_results, stop=num_results, pause=self.delay_s):
+            for url in search(query, num_results=num_results, sleep_interval=self.delay_s):
                 # Extract domain as title placeholder
                 domain = urlparse(url).netloc
                 results.append(SearchResult(

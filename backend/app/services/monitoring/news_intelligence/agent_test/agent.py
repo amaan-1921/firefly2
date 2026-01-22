@@ -29,6 +29,7 @@ try:
     from .relevance_scorer import score_and_filter_articles
     from .output_handler import write_scraped_articles
     from .schemas import ScrapedArticle
+    from .rss_fetcher import fetch_from_rss_feeds
 except ImportError:
     import config
     from query_generator import generate_search_queries
@@ -38,6 +39,7 @@ except ImportError:
     from relevance_scorer import score_and_filter_articles
     from output_handler import write_scraped_articles
     from schemas import ScrapedArticle
+    from rss_fetcher import fetch_from_rss_feeds
 
 # Configure logging
 logging.basicConfig(
@@ -144,14 +146,24 @@ def run_agent(
         
         # Step 2: Search for URLs
         logger.info("=" * 60)
-        logger.info("STEP 2: Searching for URLs")
+        logger.info("STEP 2: Fetching article URLs from RSS feeds and search")
         logger.info("=" * 60)
-        search_urls_list = search_urls(queries, num_results_per_query)
         
-        # Also get URLs from predefined sources
-        source_urls = get_urls_from_sources(config.SUPPLY_CHAIN_SOURCES)
-        all_urls = list(set(search_urls_list + source_urls))
-        logger.info(f"Found {len(all_urls)} unique URLs to scrape")
+        # Primary source: RSS feeds (no rate-limiting, most reliable)
+        rss_urls = fetch_from_rss_feeds(max_articles_per_feed=50)
+        logger.info(f"Found {len(rss_urls)} URLs from RSS feeds")
+        
+        # Secondary source: Google search (if enabled)
+        search_urls_list = []
+        if config.USE_GOOGLE_SEARCH:
+            search_urls_list = search_urls(queries, num_results_per_query)
+            logger.info(f"Found {len(search_urls_list)} URLs from search engine")
+        else:
+            logger.info("Google search disabled (set USE_GOOGLE_SEARCH=True to enable)")
+        
+        # Combine all URLs
+        all_urls = list(set(rss_urls + search_urls_list))
+        logger.info(f"Found {len(all_urls)} unique URLs total to scrape")
         
         if not all_urls:
             logger.warning("No URLs found. Exiting.")

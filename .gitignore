@@ -54,3 +54,6 @@ htmlcov/
 *.backup
 temp/
 tmp/
+
+*.cursor
+debug.log
