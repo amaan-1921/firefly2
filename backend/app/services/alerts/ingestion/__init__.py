@@ -1,0 +1,3 @@
+"""
+Ingestion layer initialization module.
+"""
