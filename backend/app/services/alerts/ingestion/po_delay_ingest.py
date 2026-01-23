@@ -6,14 +6,15 @@ Handles validation and normalization of PO delay-related signals.
 
 from typing import List
 from ..schemas import MonitoringSignal, SourceType, SignalType
+from ..config import ingestion_config
 
 
-def ingest_po_delay_signals(signals: List[MonitoringSignal]) -> List[MonitoringSignal]:
+def ingest_po_delay_signals(signals: List[MonitoringSignal] = None) -> List[MonitoringSignal]:
     """
     Ingest and normalize PO delay signals.
     
     Args:
-        signals: List of raw monitoring signals
+        signals: List of raw monitoring signals. If None, returns empty list.
         
     Returns:
         List of validated and normalized PO delay signals
@@ -21,6 +22,9 @@ def ingest_po_delay_signals(signals: List[MonitoringSignal]) -> List[MonitoringS
     Raises:
         ValueError: If signal validation fails
     """
+    if signals is None:
+        return []
+    
     normalized = []
     
     for signal in signals:
