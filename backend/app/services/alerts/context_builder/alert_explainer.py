@@ -74,8 +74,15 @@ def generate_title(entity_reference: str, signal_types: List[SignalType]) -> str
     """
     Generate a concise, clear alert title.
     
+    Handles:
+    - PO references (PO-123)
+    - Supplier references (SUP-45)
+    - Weather locations (Chennai, Mumbai)
+    - News sources (NEWS-PUBLISHER)
+    - Generic entity references
+    
     Args:
-        entity_reference: The related entity (PO-123, SUP-45, REGION-CHENNAI)
+        entity_reference: The related entity (PO-123, SUP-45, Chennai, NEWS-PUBLISHER)
         signal_types: List of signal types in this context
         
     Returns:
@@ -89,15 +96,20 @@ def generate_title(entity_reference: str, signal_types: List[SignalType]) -> str
     elif entity_reference.startswith("REGION-"):
         region = entity_reference.replace("REGION-", "")
         entity_label = f"Region: {region}"
+    elif entity_reference.startswith("NEWS-"):
+        # Extract publisher from NEWS-PUBLISHER_INDEX format
+        publisher = entity_reference.replace("NEWS-", "").split("_")[0].replace("-", " ")
+        entity_label = f"News: {publisher}"
     else:
+        # Assume it's a weather location or generic reference
         entity_label = entity_reference
     
     # Describe the risks
     if len(signal_types) == 1:
         risk_desc = describe_signal_type(signal_types[0])
-        return f"⚠️ {risk_desc} - {entity_label}"
+        return f"{risk_desc} - {entity_label}"
     else:
-        return f"⚠️ Multiple Risks Detected - {entity_label}"
+        return f"Multiple Risks Detected - {entity_label}"
 
 
 def describe_signal_type(signal_type: SignalType) -> str:
@@ -123,6 +135,9 @@ def generate_summary(context: RiskContext) -> str:
     """
     Generate a clear, non-technical explanation of the alert.
     
+    Uses signal evidence field directly and adapts context message
+    based on entity type (PO, supplier, weather location, news source).
+    
     Args:
         context: RiskContext with related signals
         
@@ -131,13 +146,12 @@ def generate_summary(context: RiskContext) -> str:
     """
     signals = context.signals
     
-    # Collect evidence statements
+    # Collect evidence statements directly from signal evidence field
     evidence_lines = []
     for signal in signals:
-        # Include severity in the explanation
-        severity_emoji = get_severity_emoji(signal.severityLevel)
+        # Use the evidence field directly from the signal
         evidence_lines.append(
-            f"{severity_emoji} {signal.evidence} (Impact window: {signal.expectedImpactWindow})"
+            f"{signal.evidence} (Impact Window: {signal.expectedImpactWindow})"
         )
     
     # Combine evidence
@@ -150,33 +164,37 @@ def generate_summary(context: RiskContext) -> str:
     entity = context.relatedEntity
     if entity.startswith("PO-"):
         context_msg = f"\nThis affects the procurement for {entity}."
+        recommendation = "Review related purchase orders and consider expedited alternatives."
     elif entity.startswith("SUP-"):
         context_msg = f"\nThis affects supplier {entity} and related orders."
+        recommendation = "Review supplier performance and consider backup suppliers."
     elif entity.startswith("REGION-"):
         context_msg = f"\nThis affects the {entity.replace('REGION-', '').lower()} region."
+        recommendation = "Review shipments in this region and consider route alternatives."
+    elif entity.startswith("NEWS-"):
+        # News source
+        context_msg = f"\nThis is relevant news information affecting supply chain."
+        recommendation = "Review the details and assess impact on ongoing operations."
     else:
-        context_msg = ""
+        # Assume weather location
+        context_msg = f"\nThis weather risk affects the {entity} location."
+        recommendation = "Monitor conditions and prepare contingency logistics plans."
     
-    # Final summary
-    summary = f"Alert Summary:\n{explanation}{context_msg}\n\nRecommendation: Review related orders and consider contingency plans."
+    # Final summary - cleaner format without emojis
+    summary = f"{explanation}{context_msg}\n\nRecommendation: {recommendation}"
     
     return summary
 
 
 def get_severity_emoji(severity_level) -> str:
     """
-    Get an emoji representation of severity.
+    DEPRECATED: Kept for backward compatibility only.
+    Emojis have been removed from alert formatting.
     
     Args:
         severity_level: SeverityLevel enum value
         
     Returns:
-        Emoji string
+        Emoji string (empty string for cleaner output)
     """
-    emojis = {
-        "CRITICAL": "🔴",
-        "HIGH": "🟠",
-        "MEDIUM": "🟡",
-        "LOW": "🟢",
-    }
-    return emojis.get(severity_level.value, "⚠️")
+    return ""

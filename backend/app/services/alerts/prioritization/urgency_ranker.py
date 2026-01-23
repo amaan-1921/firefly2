@@ -5,11 +5,14 @@ Assigns priority levels (P1, P2, P3) to alerts based on:
 - Signal severity
 - Confidence score
 - Expected impact window
+
+Thresholds are controlled by prioritization_config and can be tuned at runtime.
 """
 
 from typing import List, Tuple
 from datetime import datetime, timedelta
 from ..schemas import RiskContext, AlertPriority, SeverityLevel
+from ..config import prioritization_config
 
 
 def rank_by_urgency(contexts: List[RiskContext]) -> List[Tuple[RiskContext, AlertPriority]]:
@@ -62,21 +65,21 @@ def calculate_priority(context: RiskContext) -> AlertPriority:
         for s in signals
     )
     
-    # P1 Assignment Rules
-    if max_severity == SeverityLevel.CRITICAL and max_confidence >= 0.75:
+    # P1 Assignment Rules (using configurable thresholds)
+    if max_severity == SeverityLevel.CRITICAL and max_confidence >= prioritization_config.p1_critical_severity_min_confidence:
         return AlertPriority.P1
     
-    if max_severity == SeverityLevel.HIGH and max_confidence >= 0.85:
+    if max_severity == SeverityLevel.HIGH and max_confidence >= prioritization_config.p1_high_severity_min_confidence:
         return AlertPriority.P1
     
-    if has_urgent_window and max_confidence >= 0.80:
+    if prioritization_config.p1_immediate_impact_enabled and has_urgent_window and max_confidence >= 0.80:
         return AlertPriority.P1
     
-    # P2 Assignment Rules
-    if max_severity == SeverityLevel.HIGH and max_confidence >= 0.70:
+    # P2 Assignment Rules (using configurable thresholds)
+    if max_severity == SeverityLevel.HIGH and max_confidence >= prioritization_config.p2_high_severity_min_confidence:
         return AlertPriority.P2
     
-    if max_severity == SeverityLevel.MEDIUM and max_confidence >= 0.85:
+    if max_severity == SeverityLevel.MEDIUM and max_confidence >= prioritization_config.p2_medium_severity_max_confidence:
         return AlertPriority.P2
     
     if has_urgent_window and max_confidence >= 0.70:
