@@ -76,9 +76,9 @@ async def test_weather_risk_agent():
                 assert signal.sourceType == "External"
                 assert isinstance(signal, MonitoringSignal)
             
-            # Save signals to JSONL file
-            jsonl_filename = f"signals_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jsonl"
-            with open(jsonl_filename, 'w') as f:
+            # Append signals to JSONL file
+            jsonl_filename = "weather_output.jsonl"
+            with open(jsonl_filename, 'a') as f:
                 for signal in signals:
                     # Convert signal to dict and write as JSON line
                     signal_dict = signal.model_dump(mode='json')
@@ -86,7 +86,7 @@ async def test_weather_risk_agent():
             
             print(f"\n{'=' * 60}")
             print("✓ All signals validated successfully!")
-            print(f"✓ Signals saved to: {jsonl_filename}")
+            print(f"✓ Signals appended to: {jsonl_filename}")
             print("=" * 60)
         else:
             print("\n✓ No severe weather risks detected")
