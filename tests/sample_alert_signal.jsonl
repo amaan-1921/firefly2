@@ -1,0 +1,134 @@
+[
+  {
+    "alertId": "ALERT-288E644F",
+    "title": "⚠️ Supply Chain News Alert - News: SUPPLY CHAIN DIVE",
+    "summary": "Alert Summary:\n🟠 Title: Trump threatens tariffs on 8 countries in push for Greenland. Relevance: tariff threat. Published: 2026-01-17T00:00:00 (Window: 1–7 days)\nThis is relevant news information affecting supply chain.\n\nRecommendation: Review the details and assess impact on ongoing operations.",
+    "priority": "P1",
+    "confidenceScore": 0.9,
+    "relatedSignals": [
+      "NEWS_RISK"
+    ],
+    "createdAt": "2026-01-23T06:29:55.915477"
+  },
+  {
+    "alertId": "ALERT-A947F8A1",
+    "title": "⚠️ Supply Chain News Alert - News: SUPPLY CHAIN DIVE",
+    "summary": "Alert Summary:\n🟠 Title: UPS, FedEx discounts heat up, but shipping costs still surging. Relevance: shipping costs. Published: 2026-01-20T00:00:00 (Window: 1–7 days)\nThis is relevant news information affecting supply chain.\n\nRecommendation: Review the details and assess impact on ongoing operations.",
+    "priority": "P1",
+    "confidenceScore": 0.85,
+    "relatedSignals": [
+      "NEWS_RISK"
+    ],
+    "createdAt": "2026-01-23T06:29:55.915502"
+  },
+  {
+    "alertId": "ALERT-2738B11C",
+    "title": "⚠️ Supply Chain News Alert - News: SUPPLY CHAIN DIVE",
+    "summary": "Alert Summary:\n🟠 Title: Trump reverses tariff threat on European countries. Relevance: tariff reversal. Published: 2026-01-21T00:00:00 (Window: 1–7 days)\nThis is relevant news information affecting supply chain.\n\nRecommendation: Review the details and assess impact on ongoing operations.",
+    "priority": "P1",
+    "confidenceScore": 0.9,
+    "relatedSignals": [
+      "NEWS_RISK"
+    ],
+    "createdAt": "2026-01-23T06:29:55.915515"
+  },
+  {
+    "alertId": "ALERT-B9FDB0A3",
+    "title": "⚠️ Supply Chain News Alert - News: SUPPLY CHAIN DIVE",
+    "summary": "Alert Summary:\n🟠 Title: EU halts US trade deal over Trump’s Greenland campaign. Relevance: trade deal halt. Published: 2026-01-21T00:00:00 (Window: 1–7 days)\nThis is relevant news information affecting supply chain.\n\nRecommendation: Review the details and assess impact on ongoing operations.",
+    "priority": "P1",
+    "confidenceScore": 0.85,
+    "relatedSignals": [
+      "NEWS_RISK"
+    ],
+    "createdAt": "2026-01-23T06:29:55.915526"
+  },
+  {
+    "alertId": "ALERT-7C32BBEA",
+    "title": "⚠️ Supply Chain News Alert - News: SUPPLY CHAIN DIVE",
+    "summary": "Alert Summary:\n🟠 Title: Canada to reduce tariffs on China EVs. Relevance: tariff reduction. Published: 2026-01-16T00:00:00 (Window: 1–7 days)\nThis is relevant news information affecting supply chain.\n\nRecommendation: Review the details and assess impact on ongoing operations.",
+    "priority": "P1",
+    "confidenceScore": 0.9,
+    "relatedSignals": [
+      "NEWS_RISK"
+    ],
+    "createdAt": "2026-01-23T06:29:55.915537"
+  },
+  {
+    "alertId": "ALERT-433C9178",
+    "title": "⚠️ Supply Chain News Alert - News: SUPPLY CHAIN DIVE",
+    "summary": "Alert Summary:\n🟠 Title: OpenAI seeks US suppliers for AI supply chain. Relevance: supply chain. Published: 2026-01-20T00:00:00 (Window: 1–7 days)\nThis is relevant news information affecting supply chain.\n\nRecommendation: Review the details and assess impact on ongoing operations.",
+    "priority": "P2",
+    "confidenceScore": 0.8,
+    "relatedSignals": [
+      "NEWS_RISK"
+    ],
+    "createdAt": "2026-01-23T06:29:55.915547"
+  },
+  {
+    "alertId": "ALERT-114E66CF",
+    "title": "⚠️ Supply Chain News Alert - News: SUPPLY CHAIN DIVE",
+    "summary": "Alert Summary:\n🟠 Title: FedEx, UPS tweaks could spur more large package fees. Relevance: shipping fees. Published: 2026-01-20T00:00:00 (Window: 1–7 days)\nThis is relevant news information affecting supply chain.\n\nRecommendation: Review the details and assess impact on ongoing operations.",
+    "priority": "P2",
+    "confidenceScore": 0.8,
+    "relatedSignals": [
+      "NEWS_RISK"
+    ],
+    "createdAt": "2026-01-23T06:29:55.915557"
+  },
+  {
+    "alertId": "ALERT-9C347701",
+    "title": "⚠️ Supply Chain News Alert - News: SUPPLY CHAIN DIVE",
+    "summary": "Alert Summary:\n🟠 Title: USPS opens bidding process to reserve last-mile capacity. Relevance: last-mile logistics. Published: 2026-01-21T00:00:00 (Window: 1–7 days)\nThis is relevant news information affecting supply chain.\n\nRecommendation: Review the details and assess impact on ongoing operations.",
+    "priority": "P2",
+    "confidenceScore": 0.8,
+    "relatedSignals": [
+      "NEWS_RISK"
+    ],
+    "createdAt": "2026-01-23T06:29:55.915567"
+  },
+  {
+    "alertId": "ALERT-EA456C36",
+    "title": "⚠️ Weather Disruption Risk - Chennai",
+    "summary": "Alert Summary:\n• 🟡 High wind speed: 13.0 km/h (threshold: 5 km/h). Weather: Haze - haze (Window: 1–3 days)\n• 🟡 High wind speed: 13.0 km/h (threshold: 5 km/h). Weather: Haze - haze (Window: 1–3 days)\nThis weather risk affects the Chennai location.\n\nRecommendation: Monitor conditions and prepare contingency logistics plans.",
+    "priority": "P3",
+    "confidenceScore": 0.7,
+    "relatedSignals": [
+      "WEATHER_DISRUPTION"
+    ],
+    "createdAt": "2026-01-23T06:29:55.915580"
+  },
+  {
+    "alertId": "ALERT-ECD35CC4",
+    "title": "⚠️ Weather Disruption Risk - Mumbai",
+    "summary": "Alert Summary:\n• 🟡 High wind speed: 9.3 km/h (threshold: 5 km/h). Weather: Haze - haze (Window: 1–3 days)\n• 🟡 High wind speed: 9.3 km/h (threshold: 5 km/h). Weather: Haze - haze (Window: 1–3 days)\nThis weather risk affects the Mumbai location.\n\nRecommendation: Monitor conditions and prepare contingency logistics plans.",
+    "priority": "P3",
+    "confidenceScore": 0.7,
+    "relatedSignals": [
+      "WEATHER_DISRUPTION"
+    ],
+    "createdAt": "2026-01-23T06:29:55.915591"
+  },
+  {
+    "alertId": "ALERT-57F1406E",
+    "title": "⚠️ Supply Chain News Alert - News: SUPPLY CHAIN DIVE",
+    "summary": "Alert Summary:\n🟡 Title: Danone invests $4M to expand Texas plant amid yogurt boom. Relevance: plant expansion, manufacturing. Published: 2026-01-21T00:00:00 (Window: 1–7 days)\nThis is relevant news information affecting supply chain.\n\nRecommendation: Review the details and assess impact on ongoing operations.",
+    "priority": "P3",
+    "confidenceScore": 0.7,
+    "relatedSignals": [
+      "NEWS_RISK"
+    ],
+    "createdAt": "2026-01-23T06:29:55.915602"
+  },
+  {
+    "alertId": "ALERT-37845408",
+    "title": "⚠️ Supply Chain News Alert - News: SUPPLY CHAIN DIVE",
+    "summary": "Alert Summary:\n🟡 Title: PepsiCo uses digital twins to trial plant changes. Relevance: digital twins, plant changes. Published: 2026-01-20T00:00:00 (Window: 1–7 days)\nThis is relevant news information affecting supply chain.\n\nRecommendation: Review the details and assess impact on ongoing operations.",
+    "priority": "P3",
+    "confidenceScore": 0.7,
+    "relatedSignals": [
+      "NEWS_RISK"
+    ],
+    "createdAt": "2026-01-23T06:29:55.915615"
+  }
+]
