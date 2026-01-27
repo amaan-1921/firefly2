@@ -57,3 +57,7 @@ tmp/
 
 *.cursor
 debug.log
+
+# Node
+node_modules/
+.next/
