@@ -34,6 +34,7 @@ export async function GET() {
     // Call FastAPI backend
     const res = await fetch('http://localhost:8000/alerts/run-from-jsonl', {
       method: 'GET',
+      cache: 'no-store', // Disable caching so new entries are always fetched
     });
 
     if (!res.ok) {
@@ -59,7 +60,10 @@ export async function GET() {
       // Optional: add location if available in your data
     }));
 
-    return NextResponse.json(transformedAlerts);
+    // Return response with cache-control headers to prevent caching
+    const response = NextResponse.json(transformedAlerts);
+    response.headers.set('Cache-Control', 'no-store, max-age=0, must-revalidate');
+    return response;
   } catch (error) {
     console.error('Error fetching alerts from FastAPI:', error);
     return NextResponse.json(

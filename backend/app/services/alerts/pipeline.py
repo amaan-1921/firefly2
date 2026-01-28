@@ -48,16 +48,10 @@ def run_alerts_pipeline(signals: List[MonitoringSignal] = None) -> List[Alert]:
     
     print(f"[Pipeline] Loaded {len(signals)} signals")
     
-    # Step 2: Ingestion - Validate and normalize by source type
-    print("[Pipeline] Starting Ingestion layer...")
-    # For mock data mode, pass None to ingestion functions so they filter mock signals
-    weather_signals = ingest_weather_signals(None)
-    news_signals = ingest_news_signals(None)
-    po_signals = ingest_po_delay_signals(None)
-    supplier_signals = ingest_supplier_signals(None)
-    
-    # Combine all ingested signals
-    ingested_signals = weather_signals + news_signals + po_signals + supplier_signals
+    # Step 2: Ingestion - For mock data, signals are already validated MonitoringSignal objects
+    # No need to run through file-based ingestion layer
+    print("[Pipeline] Using mock signals (already validated)")
+    ingested_signals = signals
     print(f"[Pipeline] Ingestion complete: {len(ingested_signals)} valid signals")
     
     # Step 3: Aggregation - Group by entity
