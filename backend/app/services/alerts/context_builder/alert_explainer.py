@@ -126,7 +126,7 @@ def describe_signal_type(signal_type: SignalType) -> str:
         SignalType.WEATHER_DISRUPTION: "Weather Disruption Risk",
         SignalType.PO_DELAY_RISK: "Delivery Delay Risk",
         SignalType.SUPPLIER_PERFORMANCE_DROP: "Supplier Performance Concern",
-        SignalType.NEWS_RISK: "Supply Chain News Alert",
+        SignalType.NEWS_RISK: "Supply Chain Alert",
     }
     return descriptions.get(signal_type, "Risk Alert")
 
